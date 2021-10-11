@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="max-age=604800" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Website title - bootstrap html template</title>
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+
+
+<script type="text/javascript" src="/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/sweetalert2.min.css">
+
+<!-- jQuery -->
+<script src="/js/jquery-2.0.0.min.js" type="text/javascript"></script>
+
+<!-- Bootstrap4 files-->
+<script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+
+<!-- Font awesome 5 -->
+<link href="/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
+
+<!-- custom style -->
+<link href="/css/ui.css" rel="stylesheet" type="text/css"/>
+<link href="/css/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+<!-- custom javascript -->
+<script src="/js/script.js" type="text/javascript"></script>
+
+<script src="/js/multiselect-dropdown.js" ></script>
+
+<script type="text/javascript">
+/// some script
+
+// jquery ready start
+$(document).ready(function() {
+		
+
+}); 
+// jquery end
+</script>
+
+<style type="text/css">
+	.optext{
+		background: red;
+		color: #fff;
+	}
+</style>
+</head>
+<body>
+
+<%-include("partial/menu")%>
+
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y" style="min-height:84vh">
+
+<!-- ============================ COMPONENT LOGIN   ================================= -->
+	
+
+	<div class="card mx-auto" style="max-width: 500px;">
+      <div class="card-body"> 
+      <img src="images/favicon.png" class="" style="width: 20%; margin-left: auto; margin-right: auto; display: block;">
+
+      <h4 class="card-title mb-4 text-center">Añadir un nuevo item</h4>
+      
+      <form action="/new-product" method="POST" enctype="multipart/form-data" id="form">
+      	  
+          	<div class="form-row">
+				<div class="col form-group">
+					<label class="p-3 border" for="image1">
+						<img src="https://media.flaticon.com/dist/min/img/collections/collection-tour.svg" class="img-fluid" id="img1">
+					</label>
+				  	<input hidden="" type="file" id="image1" name="image1"  accept="image/*">
+				</div>
+
+				<div class="col form-group">
+					<label class="p-3 border" for="image2">
+						<img src="https://media.flaticon.com/dist/min/img/collections/collection-tour.svg" class="img-fluid" id="img2">
+					</label>
+				  	<input hidden="" type="file" id="image2" name="image2" accept="image/*">
+				</div>
+
+				<div class="col form-group">
+					<label class="p-3 border" for="image3">
+						<img src="https://media.flaticon.com/dist/min/img/collections/collection-tour.svg" class="img-fluid" id="img3">
+					</label>
+				  	<input hidden="" type="file" id="image3" name="image3" accept="image/*">
+				</div>
+
+				<div class="col form-group">
+					<label class="p-3 border" for="image4">
+						<img src="https://media.flaticon.com/dist/min/img/collections/collection-tour.svg" class="img-fluid" id="img4">
+					</label>
+
+				  	<input hidden="" type="file" id="image4" name="image4" accept="image/*">
+				</div>
+			</div>	
+
+
+				<div class="form-group">
+					<label>Nombre del producto</label>
+					<div class="input-group">	
+
+						<div class="input-group-prepend">
+					    	<span class="input-group-text"><i class="fas fa-tshirt"></i></span>
+					    </div>
+
+						<input type="" class="form-control" placeholder="" name="product_name">
+					</div>
+				</div> 
+
+
+				<div class="form-group">
+					<label>Precio del producto</label>
+					<div class="input-group">	
+
+						<div class="input-group-prepend">
+					    	<span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+					    </div>
+
+						<input type="number" class="form-control" placeholder="" name="product_price" pattern="^\d*(\.\d{0,2})?$">
+					</div>
+				</div> 
+
+
+				<div class="form-group">
+					<label>Descripcion del producto</label>
+					<div class="input-group">	
+
+						<div class="input-group-prepend">
+					    	<span class="input-group-text"><i class="fas fa-pen"></i></span>
+					    </div>
+
+						<textarea rows="6" type="" class="form-control" placeholder="" name="product_desc"></textarea>
+					</div>
+				</div> 
+
+
+
+				<div class="form-group">
+					<label>Detalles del producto</label>
+					<div class="">
+						
+						<div class="input-group my-1 ">	
+							<div class="input-group-prepend">
+						    	<span class="input-group-text">Estado</span>
+						    </div>
+
+							<select class="form-control" id="product_status" name="status"> 
+								<option>Nuevo</option>
+								<option>uso minimo</option>
+								<option>menor a un año de uso</option>
+								<option>mayor a un año de uso</option>
+							</select>
+						</div>
+
+
+						<div class="input-group ">	
+							<div class="input-group-prepend">
+						    	<span class="input-group-text">Marca/Modelo</span>
+						    </div>
+
+							<input type="" class="form-control" placeholder="" name="model_or_brand">
+						</div>					
+						
+
+						<div class="input-group my-1">	
+							<div class="input-group-prepend">
+						    	<span class="input-group-text">Cantidad</span>
+						    </div>
+
+							<input type="number" class="form-control" placeholder="" name="quantity">
+						</div>
+
+
+						<div class="input-group my-1">	
+							<div class="input-group-prepend">
+						    	<span class="input-group-text">Color</span>
+						    </div>
+
+							<input type="" class="form-control" placeholder="" name="color">
+						</div>
+
+
+						<div class="input-group my-1">	
+							<div class="input-group-prepend">
+						    	<span class="input-group-text">Clasifiacion</span>
+						    </div>
+
+					        <select class="form-control" name="tags" id="field1" multiple="">
+					          <option value="Ropa-Calsado-Complementos">Ropa / Calsados / Complementos</option>
+					          <option value="Deporte">Complementos Deportivos</option>
+					          <option value="Infantil">Niños y Niñas</option>
+					          <option value="Belleza">Belleza</option>
+					          <option value="Maquillaje">Maquillaje</option>
+					          <option value="Licores">Licores</option>
+					          <option value="Coches-Motos">Productos de coches / Motos</option>
+					          <option value="Electronica">Electronica / Informatica</option>
+					          <option value="Joyeria">Joyeria</option>
+					          <option value="Mobiliario-Hogar">Mobiliario</option>
+					          <option value="Salud-Personal">Salud / Cuidado Personal</option>
+					          <option value="Musica">Instrumentos Musicales</option>
+					          <option value="Videojuagos-Consolas-Juegos">Videojuagos / Accesorios</option>
+					          <option value="Libros-Musica-Videos">Libros / Musica / Videos</option>
+					          <option value="Educacion">Material Educativo</option>
+					          <option value="Artesania-Manualidades">Articulos Artesanales</option>
+					        </select>
+
+						</div>
+
+
+
+						<button type="submit" class="btn btn-danger btn-block mt-4">Publicar</button>
+					</div>	
+				</div> 
+							
+			</div> <!-- form-row end.// --> 
+
+          
+      </form>
+      </div> <!-- card-body.// -->
+    </div> <!-- card .// -->
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+<!-- ========================= FOOTER ========================= -->
+<%- include("partial/footer")%>
+<!-- ========================= FOOTER END // ========================= -->
+
+
+
+<script type="text/javascript" src="/js/formData.js"></script>
+
+</body>
+</html>

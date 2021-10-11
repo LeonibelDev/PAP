@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="max-age=604800" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Website title - bootstrap html template</title>
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+
+
+<script type="text/javascript" src="js/sweetalert2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/sweetalert2.min.css">
+
+<!-- jQuery -->
+<script src="js/jquery-2.0.0.min.js" type="text/javascript"></script>
+
+<!-- Bootstrap4 files-->
+<script src="js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+
+<!-- Font awesome 5 -->
+<link href="fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
+
+<!-- custom style -->
+<link href="css/ui.css" rel="stylesheet" type="text/css"/>
+<link href="css/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+<!-- custom javascript -->
+<script src="js/script.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+/// some script
+
+// jquery ready start
+$(document).ready(function() {
+	
+
+	
+
+}); 
+// jquery end
+</script>
+
+</head>
+<body>
+
+<%# include("partial/menu")%>
+
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y" style="min-height:84vh">
+
+<!-- ============================ COMPONENT LOGIN   ================================= -->
+	<% if (register_status == true) {%>
+	
+		<script type="text/javascript"> 
+			Swal.fire({
+			  position: 'center',
+			  icon: 'success',
+			  title: 'Cuenta Creada Correctamente!',
+			  showConfirmButton: false,
+			  timer: 2000
+			})
+		</script>
+
+	<%}%>
+
+	<div class="card mx-auto" style="max-width: 380px;">
+      <div class="card-body">
+
+      <a href="/">
+          <img src="images/favicon.png" class="" style="width: 20%; margin-left: auto; margin-right: auto; display: block;">
+      </a>
+
+      <h4 class="card-title mb-4 text-center">Inicia Sesion <%= register_status%></h4>
+      
+      <form method="POST" action="/login-session">
+      	  
+          <div class="form-group">
+			 <input name="email" class="form-control" placeholder="email" type="email" autocomplete="off">
+          </div> <!-- form-group// -->
+          <div class="form-group">
+			<input name="password" class="form-control" placeholder="Password" type="password" autocomplete="off">
+          </div> <!-- form-group// -->
+          
+          <div class="form-group">
+          	<a href="#" class="float-right">Olvidaste tu constraseña?</a> 
+            <label class="float-left custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" checked=""> <div class="custom-control-label" hidden=""> Remember </div> </label>
+          </div> <!-- form-group form-check .// -->
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block"> Iniciar Sesion </button>
+          </div> <!-- form-group// -->    
+      </form>
+      </div> <!-- card-body.// -->
+    </div> <!-- card .// -->
+
+     <p class="text-center mt-4">Aun no tienes una cuenta? <a href="/register">Crea una cuenta</a></p>
+     <br><br>
+<!-- ============================ COMPONENT LOGIN  END.// ================================= -->
+
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+<!-- ========================= FOOTER ========================= -->
+<%- include("partial/footer")%>
+<!-- ========================= FOOTER END // ========================= -->
+
+
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+.mobile-block {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  /* tablet devices */
+  .logo{
+    align-self: center;
+    display: none;
+  }
+
+  
+}
+@media (max-width: 992px) {
+  /* small tablet devices */
+  .slider-main .item-slide {
+    height: auto;
+  }
+
+  .table-shopping-cart tr td:first-child {
+    width: 250px;
+  }
+  .table-shopping-cart .itemside .info {
+    padding: 0;
+  }
+  .table-shopping-cart .itemside .aside {
+    display: none;
+  }
+
+  #image-carousel img {
+    height: auto;
+  }
+
+  .logo{
+    align-self: center;
+    display: none;
+  }
+}
+@media all and (max-width: 768px) {
+  /* mobile devices */
+  .mobile-block {
+    display: block;
+  }
+
+  .mobile-hide {
+    display: none;
+  }
+
+  .section-header .logo {
+    max-height: 40px;
+    width: auto;
+  }
+  .section-header .header-main .brand-wrap {
+    margin-bottom: 1rem;
+    display: inline-block;
+  }
+  .section-header .header-main .search {
+    margin-bottom: 1rem;
+  }
+
+  .item-feature {
+    margin-bottom: 20px;
+  }
+
+  .mobile-order-first {
+    order: -1;
+  }
+
+  .mobile-order-1 {
+    order: 1;
+  }
+
+  .mobile-order-2 {
+    order: 2;
+  }
+
+  .mobile-order-3 {
+    order: 3;
+  }
+
+  .mobile-py {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .mobile-pb {
+    padding-bottom: 20px;
+  }
+
+  .mobile-pt {
+    padding-top: 20px;
+  }
+
+  .navbar-expand .navbar-collapse {
+    flex-direction: column;
+  }
+}
+
+/*# sourceMappingURL=responsive.css.map */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+  /* CSS */
+  .menu-phone{
+    display: none;
+  }
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  /* CSS */
+  .menu-phone{
+    display: none;
+  }
+
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  /* CSS */
+  .menu-pc{
+    display: none;
+  }
+  
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  /* CSS */
+  .menu-pc{
+    display: none;
+  }
+  
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+  /* CSS */
+  .menu-pc{
+    display: none;
+  }
+
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  /* CSS */
+  .menu-pc{
+    display: none;
+  }
+
+}

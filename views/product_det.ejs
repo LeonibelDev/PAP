@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="max-age=604800" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Website title - bootstrap html template</title>
+
+<link rel="icon" href="/images/favicon.ico" sizes="180x180" type="image/x-icon">
+
+<!-- jQuery -->
+<script src="/js/jquery-2.0.0.min.js" type="text/javascript"></script>
+
+<!-- Bootstrap4 files-->
+<script src="/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+<link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+
+<!-- Font awesome 5 -->
+<link href="/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet">
+
+<!-- custom style -->
+<link href="/css/ui.css" rel="stylesheet" type="text/css"/>
+<link href="/css/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+<!-- plugin: slickslider -->
+<link href="/plugins/slickslider/slick.css" rel="stylesheet" type="text/css" />
+<link href="/plugins/slickslider/slick-theme.css" rel="stylesheet" type="text/css" />
+<script src="/plugins/slickslider/slick.min.js"></script>
+
+<!-- plugin: owl carousel  -->
+<link href="/plugins/owlcarousel/assets/owl.carousel.css" rel="stylesheet">
+<link href="/plugins/owlcarousel/assets/owl.theme.default.css" rel="stylesheet">
+<script src="/plugins/owlcarousel/owl.carousel.min.js"></script>
+
+<!-- ui style -->
+<link href="/css/ui.css" rel="stylesheet" type="text/css"/>
+<link href="/css/responsive.css" rel="stylesheet" />
+
+<!-- ui javascript -->
+<script src="/js/script.js" type="text/javascript"></script>
+
+
+<!--PRODUCT PAGE CSS-->
+<link rel="stylesheet" media="screen" href="/home-single-store_data/simplebar.css">
+<link rel="stylesheet" media="screen" href="/home-single-store_data/tiny-slider.css">
+<link rel="stylesheet" media="screen" href="/home-single-store_data/lightgallery.css">
+
+<!-- Main Theme Styles + Bootstrap-->
+<link rel="stylesheet" media="screen" href="/css/product.css">
+
+<style type="text/css">
+.slide .fa{
+  color:rgb(255, 255, 255) !important;
+
+}  
+
+.shopping-cart .fa{
+  color:#fff !important;
+}
+
+.shopping-cart{
+  color: #fff !important;
+  background: #000 !important;
+} 
+
+</style>
+
+
+<script type="text/javascript">
+/// some script
+
+// jquery ready start
+$(document).ready(function() {
+  // jQuery code
+
+    if ($('.slider-banner-slick').length > 0) { // check if element exists
+        $('.slider-banner-slick').slick({
+              
+              prevArrow: '<button type="button" class="slick-prev"><i class="fa fa-chevron-left"></i></button>',
+              nextArrow: '<button type="button" class="slick-next"><i class="fa fa-chevron-right"></i></button>',
+        });
+    } // end if
+
+}); 
+// jquery end
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js" integrity="sha512-bztGAvCE/3+a1Oh0gUro7BHukf6v7zpzrAb3ReWAVrt+bVNNphcl2tDTKCBr5zk7iEDmQ2Bv401fX3jeVXGIcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<style type="text/css">
+
+#image-carousel:hover {
+  transform: scale(1);
+}
+</style>
+</head>
+<body>
+    <%-include("partial/menu")%>
+
+
+<main class="container page-wrapper">
+  
+    <div class="row align-items-center py-3 py-md-4">
+      <div class="col-sm-6 col-md-6">
+        <div class="mb-5 mb-sm-0 text-center text-sm-start" id="colorOptions">
+          
+          
+
+<!-- ================== COMPONENT SLIDER  BOOTSTRAP  ==================  -->
+<div id="carousel1_indicator" class="carousel slide" data-ride="carousel" >
+  <ol class="carousel-indicators">
+    <% for (var x = 0; x < product.images.length; x++){ %>
+      
+        <li class="bg-danger" data-target="#carousel1_indicator" data-slide-to="<%= x%>" class="active"></li>
+              
+    <% } %>
+  </ol>
+  <div class="carousel-inner py-3" style="height: 80vh;">  
+  
+
+    <% for (var x = 0; x < product.images.length; x++){ %>
+      
+      <% if (x == 0) { %>
+        <div class="carousel-item active" id="image-carousel">
+          <img class="d-block img-fluid" style="margin-left: auto; margin-right: auto; height: auto;" src="/public/products/<%= product.images[x]%>" alt="Image">
+        </div>
+        
+      <% } else { %>
+        <div class="carousel-item" id="image-carousel">
+          <img class="d-block img-fluid" style="margin-left: auto; margin-right: auto; height: auto;" src="/public/products/<%= product.images[x]%>" alt="Image">
+        </div>
+        
+      <% } %>
+      
+    <% } %>
+  </div>
+
+  <a class="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev">
+    <i class="fa fa-arrow-left bg-danger p-2 rounded-circle" aria-hidden="true"></i>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carousel1_indicator" role="button" data-slide="next">
+    <i class="fa fa-arrow-right bg-danger p-2 rounded-circle" aria-hidden="true"></i>
+    <span class="sr-only">Next</span>
+  </a>
+</div> 
+<!-- ==================  COMPONENT SLIDER BOOTSTRAP end.// ==================  .// -->  
+
+
+  
+        
+        </div>
+      </div>
+      <div class="col-sm-6 text-sm-start col-md-6">
+        <h2 class="pb-2"><%= product.product_name %></h2>
+        
+
+        <div class="mb-3"><span><h3 class="d-inline">RD$ <%= product.product_price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') %></h3></span></div>
+        
+        <form id="form_buy" method="POST" action="/shopping?product_id=<%= product.id %>">
+          <input type="number" name="quantity" class="form-control col-sm-2 quantity" value="1" max="<%= product.quantity %>" oninvalid="this.setCustomValidity('Tu cantidad excede la cantidad disponible de <%= product.quantity %>')">
+
+          <button type="submit" class="btn btn-lg btn-danger btn-block col-sm-8 my-2" onsubmit="compra()">comprar ahora</button>
+        </form>
+        
+        <a class="btn btn-lg btn-block col-sm-8 shopping-cart" href="#" id="<%= product.id %>"><i class="fa fa-shopping-cart"></i></a>
+
+        
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $("#form_buy").submit(function(e){
+        e.preventDefault();
+
+        $.ajax({
+            url: e.currentTarget.action ,
+            type: 'POST',
+            data: {
+                quantity: $(".quantity").val()
+            },
+            success: function(data){
+
+                if(data.compra){
+                  cart_alert("Compra Realizada", "success")
+
+                }else{
+                  cart_alert("Compra Cancelada", "error")
+
+                }
+                
+            }, 
+            
+            timeout: 2000
+        })
+    })
+
+    </script>
+    <div class="row">
+      
+          <div class="col-lg-5 col-md-6 col-sm-8 offset-lg-2 offset-md-1">
+            <h5 class="mb-3">Descripcion / Detalle</h5>
+            <p class="fs-sm mb-3 mb-lg-4 pb-2 fw-medium">
+              <%= product.product_desc %>              
+            </p>
+            
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-4 offset-md-1">
+            <h5 class="mb-3">Detalles del Producto</h5>
+            <style type="text/css">
+              .spacing li{
+                margin: px 0;
+              }
+            </style>
+            <ul class="list-unstyled fs-sm mb-3 mb-lg-4 pb-1 spacing">
+              <li>
+                <strong>Estado:</strong> 
+                <%= product.status%>
+              </li>
+              
+              <li>
+                <strong>Marca/Modelo:</strong> 
+                <%= product.model_or_brand%>
+              </li>
+              
+              <li>
+                <strong>Cantidad:</strong> 
+                <%= product.quantity%>
+              </li>
+
+              <li>
+                <strong>Color:</strong> 
+                <%= product.color%>
+              </li>
+
+              <li>
+                <strong>Categoria:</strong>
+
+                <% for (var i = 0; i < product.tags.length; i++) { %>
+
+                  <span class="badge badge-pill badge-danger"><%= product.tags[i]%></span>
+                  
+                <% } %>
+                
+              </li>
+
+            </ul>
+          </div>
+    </div>
+
+  </main>
+
+  <%-include("partial/footer")%>
+
+<script type="text/javascript" src="/js/add_to_car.js"></script>
+</body>
+</html>
