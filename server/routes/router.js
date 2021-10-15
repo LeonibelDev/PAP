@@ -93,6 +93,7 @@ router.get("/new-product", authenticate, (req, res)=>{
 router.post("/new-product", (req, res)=>{
 	
 	let body = req.body
+	body.search_tag = body.product_name.split(" ")
 	body.images = []
 
 	if (req.files.image1) {

@@ -43,6 +43,10 @@ const product = new Schema({
 		default: 0
 	},
 
+	search_tag: {
+		type: Array
+	},
+
 	joining: {
 		type: Date,
 		default: new Date()
