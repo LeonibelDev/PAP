@@ -114,26 +114,18 @@ $(document).ready(function() {
   <ol class="carousel-indicators">
     <% for (var x = 0; x < product.images.length; x++){ %>
       
-        <li class="bg-danger" data-target="#carousel1_indicator" data-slide-to="<%= x%>" class="active"></li>
+        <li class="bg-danger <%= x == 0? "active" : "" %>" data-target="#carousel1_indicator" data-slide-to="<%= x%>" class="active"></li>
               
     <% } %>
   </ol>
-  <div class="carousel-inner py-3" style="height: 80vh;">  
+  <div class="carousel-inner py-3" style="height: 70vh;">  
   
 
-    <% for (var x = 0; x < product.images.length; x++){ %>
+    <% for (var x = 0; x < product.images.length; x++){ %>  
       
-      <% if (x == 0) { %>
-        <div class="carousel-item active" id="image-carousel">
-          <img class="d-block img-fluid" style="margin-left: auto; margin-right: auto; height: auto;" src="/public/products/<%= product.images[x]%>" alt="Image">
-        </div>
-        
-      <% } else { %>
-        <div class="carousel-item" id="image-carousel">
-          <img class="d-block img-fluid" style="margin-left: auto; margin-right: auto; height: auto;" src="/public/products/<%= product.images[x]%>" alt="Image">
-        </div>
-        
-      <% } %>
+      <div class="carousel-item <%= x == 0? "active" : "" %> " id="image-carousel">
+        <img class="d-block img-fluid" style="margin-left: auto; margin-right: auto; max-width: 400px; height: auto; width: 100%;" src="/public/products/<%= product.images[x]%>" alt="Image">
+      </div>
       
     <% } %>
   </div>
@@ -159,7 +151,9 @@ $(document).ready(function() {
         
 
         <div class="mb-3"><span><h3 class="d-inline">RD$ <%= product.product_price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') %></h3></span></div>
-        
+      
+      <% if (session) { %>
+       
         <form id="form_buy" method="POST" action="/shopping?product_id=<%= product.id %>">
           <input type="number" name="quantity" class="form-control col-sm-2 quantity" value="1" max="<%= product.quantity %>" oninvalid="this.setCustomValidity('Tu cantidad excede la cantidad disponible de <%= product.quantity %>')">
 
@@ -168,7 +162,12 @@ $(document).ready(function() {
         
         <a class="btn btn-lg btn-block col-sm-8 shopping-cart" href="#" id="<%= product.id %>"><i class="fa fa-shopping-cart"></i></a>
 
-        
+      <% } else { %>
+
+        <a class="btn btn-danger btn-lg btn-block col-sm-8" href="/login?redirect=/product/<%= product.product_name %>?q=<%= product.id %>">Registrate Para Comprar</a>
+
+      <% } %>
+
       </div>
     </div>
 

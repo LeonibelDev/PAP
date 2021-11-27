@@ -27,6 +27,7 @@
 
 <!-- custom style -->
 <link href="/css/ui.css" rel="stylesheet" type="text/css"/>
+<link href="/css/login.css" rel="stylesheet" type="text/css"/>
 <link href="/css/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)" />
 
 <!-- custom javascript -->
@@ -63,8 +64,14 @@ $(document).ready(function() {
 
 <!-- ============================ COMPONENT LOGIN   ================================= -->
 	
+<style>
 
-	<div class="card mx-auto" style="max-width: 500px;">
+	.card img{
+		border-radius: 3px !important;
+	}
+</style>
+
+	<div class="card mx-auto" style="max-width: 500px; border: none; box-shadow: rgba(0, 0, 0, 0.7) 1px;">
       <div class="card-body"> 
       <img src="images/favicon.png" class="" style="width: 20%; margin-left: auto; margin-right: auto; display: block;">
 
@@ -74,28 +81,28 @@ $(document).ready(function() {
       	  
           	<div class="form-row">
 				<div class="col form-group">
-					<label class="p-3 border" for="image1">
+					<label class="p-3" for="image1">
 						<img src="https://media.flaticon.com/dist/min/img/collections/collection-tour.svg" class="img-fluid" id="img1">
 					</label>
 				  	<input hidden="" type="file" id="image1" name="image1"  accept="image/*">
 				</div>
 
 				<div class="col form-group">
-					<label class="p-3 border" for="image2">
+					<label class="p-3" for="image2">
 						<img src="https://media.flaticon.com/dist/min/img/collections/collection-tour.svg" class="img-fluid" id="img2">
 					</label>
 				  	<input hidden="" type="file" id="image2" name="image2" accept="image/*">
 				</div>
 
 				<div class="col form-group">
-					<label class="p-3 border" for="image3">
+					<label class="p-3" for="image3">
 						<img src="https://media.flaticon.com/dist/min/img/collections/collection-tour.svg" class="img-fluid" id="img3">
 					</label>
 				  	<input hidden="" type="file" id="image3" name="image3" accept="image/*">
 				</div>
 
 				<div class="col form-group">
-					<label class="p-3 border" for="image4">
+					<label class="p-3" for="image4">
 						<img src="https://media.flaticon.com/dist/min/img/collections/collection-tour.svg" class="img-fluid" id="img4">
 					</label>
 
@@ -217,7 +224,7 @@ $(document).ready(function() {
 
 
 
-						<button type="submit" class="btn btn-danger btn-block mt-4">Publicar</button>
+						<button type="submit" class="btn btn-lg btn-danger btn-block mt-4">Publicar</button>
 					</div>	
 				</div> 
 							

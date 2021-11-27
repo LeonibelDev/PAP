@@ -1,0 +1,18 @@
+.card *, .card{
+    border: none !important;
+    
+}
+
+.card{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    
+}
+
+.card input, .card textarea, .card select{
+    box-shadow: rgba(100, 100, 111, 0.1) 0px 2px 29px 0px;
+
+}
+
+.card .input-group{
+    margin: 20px 0px !important;
+}

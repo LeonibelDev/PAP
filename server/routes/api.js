@@ -23,22 +23,9 @@ cript.setKey("hola422sysd_22agost2021")
 
 router.get("/", async(req, res)=>{
 	
-	let paginate_conf = {
-		limit: parseInt(req.query.limit) || 10,
-		page: parseInt(req.query.page) || 1,
-		orderByDirection: "joining"
-		
-	}
-	
-	// let query = await product.find({}, {_id: 1, product_name: 1, product_price: 1, images: 1}).sort({joining: -1})
-	let query = await product.paginate({}, paginate_conf)
+	let query = await product.find({}, {_id: 1, product_name: 1, product_price: 1, images: 1}).sort({joining: -1})
 
-	console.log(query)
-	res.render("home", {
-		session: req.session.user,
-		product: query.docs,
-		paginate: query
-	})
+	res.json(query)
 })
 
 
@@ -56,29 +43,29 @@ router.post("/login-session", async (req, res)=>{
 	let {email, password} = req.body
 	let { redirect } = req.query
 
-		cript.encrypt(password, (err, result) => {
-	    	if (err) throw err;
-	    	password = result;
-		})
+	cript.encrypt(password, (err, result) => {
+    	if (err) throw err;
+    	password = result;
+	})
 
 	let query = await user_account.findOne({email: email, password: password}, 
 		{_id:1, user_name:1, email:1, phone:1})
 
 	if(query){
-
 		req.session.user = query
-		
-		if (redirect) {
-			res.redirect(redirect)
-		}else{
-			res.redirect("/")
-		}
-
-	}else{
-		req.flash("register_status", "error al inicial sesion")
-		res.redirect("/login")
+		res.statusCode = 200
+		res.json({
+			msg: "success",
+			redir_to: "/home"
+		})
 	}
-
+	else{
+		res.statusCode = 401
+		res.json({
+			msg: "account not exist",
+			redir_to: "/login"
+		})
+	}
 
 })
 
@@ -118,14 +105,6 @@ router.post("/new-product", (req, res)=>{
 
 
 
-
-router.get("/register", (req, res)=>{
-	res.render("register")	
-})
-
-
-
-
 router.post("/register", async (req, res)=>{
 
 	let { password } = req.body
@@ -141,10 +120,11 @@ router.post("/register", async (req, res)=>{
 
 	console.log(req.body)
 
-	req.flash("register_status", true)			
-	
-
-	res.redirect("/login")
+	res.statusCode = 201
+	res.json({
+		redir_to: "/login",
+		msg: "success"
+	})
 
 })
 
@@ -185,27 +165,16 @@ router.get("/cart", authenticate, async(req, res)=>{
 })
 
 
-router.get("/product", (req, res)=>{
-	res.render("product", {
-		session: req.session.user
-	})
-})
-
-
-
-router.get("/product/:id", async(req, res)=>{
+router.get("/product/:id", authenticate, async(req, res)=>{
 	let { id } = req.params
 	let { q } = req.query
 
-	let queryUpdateViews = await product.update({_id: q}, {"$inc": {views: +1}})
-	let query = await product.findById(q, {joining: 0, views: 0})
+	let queryUpdateViews = await product.update({_id: id}, {"$inc": {views: +1}})
+	let query = await product.findById(id, {joining: 0, views: 0})
 	
 	console.log(query)
 
-	await res.render("product_det", {
-		session: req.session.user,
-		product: query
-	})
+	res.json(query)
 })
 
 

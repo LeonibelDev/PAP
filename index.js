@@ -56,9 +56,9 @@ server.use('/public', express.static(path.join(__dirname, "./public")));
 server.use(express.static("./static"))
 
 
-//use routes
-const router = require("./server/routes/router.js")
-server.use(router)
+//api
+const api = require("./server/routes/api.js")
+server.use(api)
 
 server.use(function(req, res, next) {
   res.locals.user = req.session.user;    
@@ -71,7 +71,7 @@ server.get("*", (req, res)=>{
 //server
 
 let config = {
-  port: process.env.port || 8080
+  port: process.env.port || 8081
 }
 
 server.listen(config.port, ()=>{

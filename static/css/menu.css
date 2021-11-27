@@ -1,3 +1,21 @@
 .menu-pc{
     box-shadow: rgba(0, 0, 0, .1) 0px 0px 10px 0px;
 }
+
+.menu-phone .opacity-icon{
+    background: rgba(255, 255, 255, 0.3);
+    
+}
+
+.menu-phone .opacity-icon:hover{
+    background: rgba(255, 255, 255, 1);
+    
+}
+
+.navbar-nav .nav-link{
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: "Arial";
+
+}

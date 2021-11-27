@@ -60,7 +60,7 @@
 <div class="row">
 
 	<% for (var i = 0; i < product.length; i++) { %>
-		<div class="col-md-3">
+		<div class="col-md-3 col-sm-4">
 			<div href="/product/<%= product[i].product_name%>?q=<%= product[i].id%>" class="card card-product-grid" style="border: 0;">
 				
 				<a href="/product/<%= product[i].product_name%>?q=<%= product[i].id%>" class="img-wrap p-2"> 
@@ -78,7 +78,7 @@
 	<% } %>
 	
 </div> <!-- row.// -->
-<img src="/images/banner.jpg" alt="banner" class="img-fluid">
+<!-- <img src="/images/banner.jpg" alt="banner" class="img-fluid"> -->
 
 </div><!-- container // -->
 </section>

@@ -3,11 +3,12 @@ var authenticate = function (req, res, next) {
   var isAuthenticated = Boolean(req.session.user)
 
   if (isAuthenticated) {
+  	res.statusCode = 200
     next()
   }
   else {
-  	req.flash("redir", req.url)
-    res.redirect(`/login`)
+  	res.statusCode = 401
+    next()
   }
 }
 
