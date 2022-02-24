@@ -3,22 +3,19 @@ const router = express.Router()
 const marked = require("marked")
 const path = require("path")
 const fs = require("fs")
-
+const jwt = require("jsonwebtoken")
 
 //validate session
 const authenticate = require("./auth.js")
-// db config
 
+// db config
 const conn = require("../config/db/conn.js")
 const user_account = require("../config/db/user_schema.js")
 const product = require("../config/db/product_schema.js")
 const shopping_schema = require("../config/db/shopping_schema.js")
 
-
-const cript = require("cript.js")
-cript.setKey("hola422sysd_22agost2021")
-
-
+// secret key
+const secret = require("./key")
 
 
 router.get("/", async(req, res)=>{
@@ -31,41 +28,65 @@ router.get("/", async(req, res)=>{
 
 
 
-router.get("/login", (req, res)=>{
-	res.render("login", {
-		register_status: req.flash("register_status"),
-		redir: req.query.redirect
-	})	
+// router.get("/login", (req, res)=>{
+// 	res.render("login", {
+// 		register_status: req.flash("register_status"),
+// 		redir: req.query.redirect
+// 	})	
+// })
+
+router.post("/register", async (req, res)=>{
+
+	let query = new user_account(req.body)
+
+	//query.password = await query.encrypt(query.password)
+	
+	query.save()
+
+	// const token = jwt.sign({id: query._id}, secret.key, {
+	// 	expiresIn: 60 * 60 * 24 * 2
+	// })
+
+	res.status = 201
+	console.log(token)
+	res.json({
+		auth: true,
+		redir_to: "/login",
+		msg: "success"
+	})
+
 })
 
 
 router.post("/login-session", async (req, res)=>{
 	let {email, password} = req.body
-	let { redirect } = req.query
-
-	cript.encrypt(password, (err, result) => {
-    	if (err) throw err;
-    	password = result;
-	})
-
+	
 	let query = await user_account.findOne({email: email, password: password}, 
 		{_id:1, user_name:1, email:1, phone:1})
 
-	if(query){
-		req.session.user = query
-		res.statusCode = 200
-		res.json({
-			msg: "success",
-			redir_to: "/home"
-		})
-	}
-	else{
-		res.statusCode = 401
+	if(!query){
+		console.log("account not exist")
+		
+		res.status = 404
 		res.json({
 			msg: "account not exist",
-			redir_to: "/login"
 		})
 	}
+
+	//let password_is_valid = await query.validate_password(password)
+
+	//console.log(password_is_valid)
+	const token = jwt.sign({id: query._id}, secret.key, {
+		expiresIn: 60 * 60 * 24 * 2
+	})
+
+	res.status = 201
+	res.json({
+		token,
+		msg: "success",
+		redir_to: "/"
+	})
+	
 
 })
 
@@ -105,29 +126,28 @@ router.post("/new-product", (req, res)=>{
 
 
 
-router.post("/register", async (req, res)=>{
+router.post("/token", async(req, res) => {
+	// const token = req.headers["x-access-token"]
+	let { token } = req.body
 
-	let { password } = req.body
+	// if (!token){
+	// 	res.status(401).json({
+	// 		msg: "No token provided"
+	// 	})
+	// }
 
-	cript.encrypt(password, (err, result) => {
-    	if (err) throw err;
-    	req.body.password = result;
-	})
-	
-	
-	let query = new user_account(req.body)
-	query.save()
+	let decoded = jwt.verify(token, secret.key)
 
-	console.log(req.body)
-
-	res.statusCode = 201
+	//let user = await user_account.findById(decoded.id, { user_name: 1, _id: 0 })
 	res.json({
-		redir_to: "/login",
-		msg: "success"
-	})
+		msg: "hey"
+		// token: decoded,
+		// msg: "success",
+		// user,
+		// user_v: Boolean(this.user)
+	}) 
 
 })
-
 
 router.get("/cart", authenticate, async(req, res)=>{
 
@@ -325,9 +345,6 @@ router.get("/admin/shopping-control-system", async (req, res)=>{
 	})
 })
 
-router.get("/random", (req, res)=>{
-	console.log(req.query)
-})
 
 
 router.post("/update/status", async (req, res)=>{
@@ -339,15 +356,5 @@ router.post("/update/status", async (req, res)=>{
 })
 
 
-router.get("/api/products", async(req, res)=>{
-	
-
-	let query = await product.paginate({}, paginate_conf)
-
-	res.json({
-		query
-	})
-	
-})
 
 module.exports = router

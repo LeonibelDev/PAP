@@ -1,5 +1,9 @@
 const { Schema, model } = require("mongoose")
 
+const bcrypt = require("bcryptjs")
+// const crypt = require("cript.js")
+// crypt.setKey("hola422sysd_22agost2021")
+
 const user_account = new Schema({
 	user_name: {
 		type: String
@@ -58,5 +62,14 @@ const user_account = new Schema({
 	}
 
 })
+
+user_account.methods.encrypt = async (password) => {
+	const salt = await bcrypt.genSalt(10)
+	return bcrypt.hash(password, salt)
+}
+
+user_account.methods.validate_password = function (password) {
+	return  bcrypt.compare(password, this.password)
+}
 
 module.exports = model("user_account", user_account)

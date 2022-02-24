@@ -11,7 +11,7 @@ const multer  = require('multer')
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "/public/products"));
+    cb(null, path.join(__dirname, "./static/public/products"));
   },
   filename: function (req, file, cb) {
     cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
@@ -52,13 +52,11 @@ server.set("view engine", "ejs")
 server.set("views", path.join(__dirname, "views"))
 
 //get static files
-server.use('/public', express.static(path.join(__dirname, "./public")));
 server.use(express.static("./static"))
 
 
 //api
-const api = require("./server/routes/api.js")
-server.use(api)
+server.use(require("./server/routes/router.js"))
 
 server.use(function(req, res, next) {
   res.locals.user = req.session.user;    
